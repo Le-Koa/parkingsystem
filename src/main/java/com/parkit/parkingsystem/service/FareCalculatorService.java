@@ -13,7 +13,6 @@ public class FareCalculatorService {
         double inHour = ticket.getInTime().getTime();
         double outHour = ticket.getOutTime().getTime();
 
-        //TODO: Some tests are failing here. Need to check if this logic is correct
         
         double duration = ((outHour - inHour) / (60 * 60 * 1000));
 
@@ -28,5 +27,5 @@ public class FareCalculatorService {
             }
             default: throw new IllegalArgumentException("Unkown Parking Type");
         }
-    }
+    } 
 }
