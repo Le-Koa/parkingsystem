@@ -86,6 +86,26 @@ public class TicketDAO {
         }finally {
             dataBaseConfig.closeConnection(con);
         }
-        return false;
+        return false; 
     }
+    
+   /* public int CountRegNumber (String vehiculeRegNumber) {
+    	Connection con = null;
+    	int countVehiculeRegNumber = 0;
+    	try {
+    		con = dataBaseConfig.getConnection();
+    		PreparedStatement ps = con.prepareStatement(DBConstants.COUNT_REG_NUMBER);
+    		ps.setString(1, vehiculeRegNumber); 
+    		ResultSet rs = ps.executeQuery();  //Executer la recherche 
+    		if (rs.next()) {
+    			countVehiculeRegNumber = rs.getInt(1);
+    		}
+    	}catch (Exception ex){ 
+    		logger.error("Error counting the immatriculation", ex);
+    	} finally {
+    		dataBaseConfig.closeConnection(con);
+    	}
+		return countVehiculeRegNumber; 
+    			
+    }*/
 }

@@ -24,7 +24,7 @@ public class ParkingService {
     public ParkingService(InputReaderUtil inputReaderUtil, ParkingSpotDAO parkingSpotDAO, TicketDAO ticketDAO){
         this.inputReaderUtil = inputReaderUtil;
         this.parkingSpotDAO = parkingSpotDAO;
-        this.ticketDAO = ticketDAO;
+        this.ticketDAO = ticketDAO; 
     }
 
     public void processIncomingVehicle() {
