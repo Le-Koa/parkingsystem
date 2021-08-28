@@ -161,7 +161,7 @@ public class FareCalculatorServiceTest {
         fareCalculatorService.calculateFare(ticket);
         
         //THEN
-        assertEquals(0 , ticket.getPrice());
+        assertEquals(0 , ticket.getPrice()); 
     }
     
     @Test
@@ -175,6 +175,7 @@ public class FareCalculatorServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
+        ticket.SetDiscountPrice(true);
         
         //WHEN
         fareCalculatorService.calculateFare(ticket);
@@ -195,11 +196,52 @@ public class FareCalculatorServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
+        ticket.SetDiscountPrice(true);
         
         //WHEN
         fareCalculatorService.calculateFare(ticket);
         
         //THEN
         assertEquals(0.95 * Fare.CAR_RATE_PER_HOUR , ticket.getPrice());	
+    } 
+    
+    @Test 
+    public void calculateFarBikeWithNoDiscount() {
+    	//GIVEN
+    	Date inTime = new Date();
+    	inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
+
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime);
+        ticket.setParkingSpot(parkingSpot);
+        ticket.SetDiscountPrice(false);
+        
+        //WHEN
+        fareCalculatorService.calculateFare(ticket);
+        
+        //THEN
+        assertEquals(1 * Fare.BIKE_RATE_PER_HOUR , ticket.getPrice());	
+    }
+    
+    @Test 
+    public void calculateFarCarWithNoDiscount() {
+    	//GIVEN
+    	Date inTime = new Date();
+    	inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
+
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime); 
+        ticket.setParkingSpot(parkingSpot);
+        ticket.SetDiscountPrice(false);
+        
+        //WHEN
+        fareCalculatorService.calculateFare(ticket);
+        
+        //THEN 
+        assertEquals(1 * Fare.CAR_RATE_PER_HOUR , ticket.getPrice());	
     }
 }
