@@ -17,39 +17,29 @@ public class FareCalculatorService {
         
         double duration = ((outHour - inHour) / (60 * 60 * 1000));
         
+        double discount = 1;
+        
         if(duration <= 0.5) {
         	ticket.setPrice(0);
+        	return;
         } 
-        else {
-        	if (ticket.getDiscountPrice() == true) {
-        		
-        	
+        	if (ticket.getDiscountPrice()) {
+        		 discount = Fare.USER_DISCOUNT;
+        	}
         		switch (ticket.getParkingSpot().getParkingType()){
             	case CAR: {
-            		ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR * 0.95);
+            		ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR * discount );
             		break;
             		}
             	case BIKE: {
-            		ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR * 0.95);
+            		ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR * discount );
             		break;
             		}
-        		}  
-        	} else {
-            	if (ticket.getDiscountPrice() == false){ 
+            	default: throw new IllegalArgumentException("Unkown Parking Type"); 
+        		} 
+    	}
+}
+         		
         	
-        	switch (ticket.getParkingSpot().getParkingType()){
-            	case CAR: {
-            		ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
-            		break;
-            		}
-            	case BIKE: {
-            		ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
-            		break;
-            }
-            default: throw new IllegalArgumentException("Unkown Parking Type");
-        			} 
-            	}      
-        	}
-        }
-    }
-} 
+    
+ 

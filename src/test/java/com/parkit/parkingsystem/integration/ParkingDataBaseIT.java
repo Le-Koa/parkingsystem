@@ -6,8 +6,6 @@ import com.parkit.parkingsystem.integration.service.DataBasePrepareService;
 import com.parkit.parkingsystem.model.Ticket;
 import com.parkit.parkingsystem.service.ParkingService;
 import com.parkit.parkingsystem.util.InputReaderUtil;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.when;
 
-import java.sql.Date;
 
 
 
@@ -50,15 +47,9 @@ public class ParkingDataBaseIT {
         when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
         dataBasePrepareService.clearDataBaseEntries();
     }
-
-    @AfterAll
-    private static void tearDown(){
-
-    }
-
+    
     @Test
     public void testParkingACar(){
-    	 //TODO: check that a ticket is actually saved in DB and Parking table is updated with availability
     	
     	//GIVEN
     	ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
@@ -92,7 +83,7 @@ public class ParkingDataBaseIT {
         assertNotNull(ticket.getPrice());
       
     }
-        //TODO: check that the fare generated and out time are populated correctly in the database
+        
     
 
 }

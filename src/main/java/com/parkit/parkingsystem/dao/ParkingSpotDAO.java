@@ -5,7 +5,6 @@ import com.parkit.parkingsystem.constants.DBConstants;
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.model.ParkingSpot;
 
-import junit.framework.Assert;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
