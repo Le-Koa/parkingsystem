@@ -53,14 +53,3 @@ public class FareCalculatorService {
         }
     }
 } 
-
-
-    
-    
-    
-    
-   
-
-/*public void DiscountRecuringUser ()
-}	if (ticket()) {
-    ticket.setPrice(ticket.getPrice() * 0.95);*/
