@@ -49,7 +49,7 @@ public class ParkingDataBaseIT {
     }
     
     @Test
-    public void testParkingACar(){
+    public void testParkingACar() throws Exception{
     	
     	//GIVEN
     	ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);

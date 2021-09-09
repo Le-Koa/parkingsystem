@@ -27,17 +27,21 @@ public class ParkingService {
         this.ticketDAO = ticketDAO; 
     }
 
-    public void processIncomingVehicle() {
+    public void processIncomingVehicle() throws Exception {
+    	
+    	String vehicleRegNumber = getVehichleRegNumber();
+    	Ticket ticket = new Ticket();
+    	//TicketDAO ticketDAO = new TicketDAO();
+    	if(ticketDAO.CountRegNumber(vehicleRegNumber)==true) {
+            System.out.println("Welcome back! As a recurring use of our parking lot, you'll benefit from a 5% discount.");
+        }
+    	
         try{
             ParkingSpot parkingSpot = getNextParkingNumberIfAvailable();
-            if(parkingSpot !=null && parkingSpot.getId() > 0){
-                String vehicleRegNumber = getVehichleRegNumber();
+            if(parkingSpot !=null && parkingSpot.getId() > 0){        
                 parkingSpot.setAvailable(false);
                 parkingSpotDAO.updateParking(parkingSpot);//allow this parking space and mark it's availability as false
-
-                Date inTime = new Date();
-                Ticket ticket = new Ticket();
-              
+                Date inTime = new Date();            
                 //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
                 //ticket.setId(ticketID);
                 ticket.setParkingSpot(parkingSpot);
@@ -104,7 +108,7 @@ public class ParkingService {
             Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
             Date outTime = new Date();
             ticket.setOutTime(outTime);
-            fareCalculatorService.calculateFare(ticket);
+            fareCalculatorService.calculateFare(ticket, false);
             if(ticketDAO.updateTicket(ticket)) {
                 ParkingSpot parkingSpot = ticket.getParkingSpot();
                 parkingSpot.setAvailable(true);

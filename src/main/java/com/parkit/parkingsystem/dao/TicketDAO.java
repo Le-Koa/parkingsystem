@@ -94,7 +94,7 @@ public class TicketDAO {
     	
     	try {
     		con = dataBaseConfig.getConnection();
-    		PreparedStatement ps = con.prepareStatement(DBConstants.GET_TICKET);
+    		PreparedStatement ps = con.prepareStatement(DBConstants.COUNT_REG_NUMBER);
     		ps.setString(1, vehiculeRegNumber); 
     		ResultSet rs = ps.executeQuery();  //Executer la recherche 
     		if (rs.next()) {
@@ -104,7 +104,7 @@ public class TicketDAO {
     		logger.error("Error processing ticket", ex);
     	} finally {
     		dataBaseConfig.closeConnection(con);
-    	}
+    	} 
 		return false;   
     			
     }
