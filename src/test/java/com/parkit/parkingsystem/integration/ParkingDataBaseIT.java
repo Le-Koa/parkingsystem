@@ -51,34 +51,23 @@ public class ParkingDataBaseIT {
     @Test
     public void testParkingACar() throws Exception{
     	
-    	//GIVEN
     	ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processIncomingVehicle();
-        
-        //WHEN
         Ticket ticket = ticketDAO.getTicket("ABCDEF");
         assertNotNull(ticket);
-        
-        //THEN
-        
         assertEquals("ABCDEF", ticket.getVehicleRegNumber());
         assertEquals(ticket.getParkingSpot().isAvailable(), false);
-    }
+    } 
        
     @Test
     public void testParkingLotExit() throws Exception {
         testParkingACar();
         Thread.sleep(1000);
         
-       //GIVEN 
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processExitingVehicle();
-        
-        //WHEN
-       Ticket ticket = ticketDAO.getTicket("ABCDEF");
-       assertNotNull(ticket);
-       
-       //THEN
+        Ticket ticket = ticketDAO.getTicket("ABCDEF");
+        assertNotNull(ticket);
         assertNotNull(ticket.getOutTime());
         assertNotNull(ticket.getPrice());
       

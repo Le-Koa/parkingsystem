@@ -47,5 +47,5 @@ public class DataBaseConfig {
                 logger.error("Error while closing result set",e);
             }
         }
-    }
+    } 
 } 

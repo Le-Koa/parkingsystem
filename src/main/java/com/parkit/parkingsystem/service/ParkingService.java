@@ -31,14 +31,13 @@ public class ParkingService {
     	
     	String vehicleRegNumber = getVehichleRegNumber();
     	Ticket ticket = new Ticket();
-    	//TicketDAO ticketDAO = new TicketDAO();
-    	if(ticketDAO.CountRegNumber(vehicleRegNumber)==true) {
+    	if(ticketDAO.countRegNumber(vehicleRegNumber)==true) {
             System.out.println("Welcome back! As a recurring use of our parking lot, you'll benefit from a 5% discount.");
         }
     	
         try{
             ParkingSpot parkingSpot = getNextParkingNumberIfAvailable();
-            if(parkingSpot !=null && parkingSpot.getId() > 0){        
+            if(parkingSpot !=null && parkingSpot.getId() > 0){         
                 parkingSpot.setAvailable(false);
                 parkingSpotDAO.updateParking(parkingSpot);//allow this parking space and mark it's availability as false
                 Date inTime = new Date();            

@@ -89,7 +89,7 @@ public class TicketDAO {
         return false; 
     }
     
-   public boolean CountRegNumber (String vehiculeRegNumber) {
+   public boolean countRegNumber (String vehiculeRegNumber) {
     	Connection con = null;
     	
     	try {
@@ -103,7 +103,7 @@ public class TicketDAO {
     	}catch (Exception ex){ 
     		logger.error("Error processing ticket", ex);
     	} finally {
-    		dataBaseConfig.closeConnection(con);
+    		dataBaseConfig.closeConnection(con); 
     	} 
 		return false;   
     			

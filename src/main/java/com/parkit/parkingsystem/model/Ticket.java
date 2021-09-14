@@ -9,7 +9,7 @@ public class Ticket {
     private double price;
     private Date inTime;
     private Date outTime;
-    private boolean discountPrice;
+
 
     public int getId() {
         return id;
